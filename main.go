@@ -33,11 +33,13 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 	a := rand.Intn(len(datfiles))
-	fmt.Println(a)
-	fmt.Println(len(datfiles))
+	fmt.Println(a, "th datfile")
+	fmt.Println(len(datfiles), "total datfiles")
 
 	// Select random file
 	randFile := datfiles[a]
+
+	fmt.Println("datfile name:", randFile)
 
 	file, err := os.Open(randFile)
 
@@ -51,10 +53,45 @@ func main() {
     reader := bufio.NewReader(file)
     scanner := bufio.NewScanner(reader)
 
+    quotes := 0
+
     for scanner.Scan() {
-        // fmt.Println(scanner.Text())
-        // TODO: process each quote here
+    	if scanner.Text() == "%" {
+    		quotes++
+    	}
     }
+
+	file2, err2 := os.Open(randFile)
+
+    if err2 != nil {
+        fmt.Println(err2)
+        os.Exit(1)
+    }
+
+    defer file2.Close()
+
+    reader2 := bufio.NewReader(file2)
+    scanner2 := bufio.NewScanner(reader2)
+
+	rand.Seed(time.Now().UnixNano())
+	b := rand.Intn(quotes)
+	fmt.Println(b, "th quote")
+	fmt.Println(quotes, "total quotes")
+
+    count := 1
+    quote := ""
+
+    for scanner2.Scan() {
+    	if scanner2.Text() != "%" && count == b {
+            quote = quote + scanner2.Text() + "\n"
+    	} else if (scanner2.Text() == "%" && (count > b)) {
+	    	break
+    	} else if scanner2.Text() == "%" {
+    		count++
+    	}
+    }
+
+    fmt.Println(quote)
 
     // router := mux.NewRouter()
     // router.HandleFunc("/people", GetPeople).Methods("GET")
