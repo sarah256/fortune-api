@@ -1,9 +1,9 @@
 package main
 
 import (
-    // "github.com/gorilla/mux"
-    // "log"
-    // "net/http"
+    "github.com/gorilla/mux"
+    "log"
+    "net/http"
 	"math/rand"
 	"time"
 	"fmt"
@@ -11,6 +11,7 @@ import (
     "os"
     "strings"
     "bufio"
+    "encoding/json"
 )
 
 func getFortune(filename string, fortunes int) string {
@@ -50,7 +51,7 @@ func getFortune(filename string, fortunes int) string {
     return fortune
 }
 
-func getRandomFortune() string {
+func getRandomFortune(w http.ResponseWriter, r *http.Request) {
 	// Selects a random datfile to return a random fortune (not including offensive)
 	// Returns : the fortune in a formatted string
 
@@ -102,14 +103,15 @@ func getRandomFortune() string {
     	}
     }
 
-	return getFortune(randFile, fortunes)
+	fortune := getFortune(randFile, fortunes)
+    json.NewEncoder(w).Encode(fortune)
 }
 
-func getSpecificFortuneType(fortuneType string) string {
+func getSpecificFortuneType(w http.ResponseWriter, r *http.Request) {
 	// Get a specific genre of fortune
 	// fortuneType : the genre of fortune; must be a file within datfiles
-
-	filePath := fmt.Sprintf("%s%s", "datfiles\\", fortuneType)
+	params := mux.Vars(r)
+	filePath := fmt.Sprintf("%s%s", "datfiles\\", params["genre"])
 
 	file, err := os.Open(filePath)
 
@@ -131,21 +133,20 @@ func getSpecificFortuneType(fortuneType string) string {
     	}
     }
 
-	return getFortune(filePath, fortunes)
+	fortune := getFortune(filePath, fortunes)
+    json.NewEncoder(w).Encode(fortune)
 }
 
 func main() {
 
-    fortune := getRandomFortune()
+    // fortune := getRandomFortune()
+    // fmt.Println("\n", fortune)
 
-    fmt.Println("\n", fortune)
+    // fortune2 := getSpecificFortuneType("goedel")
+    // fmt.Println("\n", fortune2)
 
-    fortune2 := getSpecificFortuneType("goedel")
-
-    fmt.Println("\n", fortune2)
-
-    // router := mux.NewRouter()
-    // router.HandleFunc("/people", GetPeople).Methods("GET")
-    // router.HandleFunc("/people/{id}", GetPerson).Methods("GET")
-    // log.Fatal(http.ListenAndServe(":8000", router))
+    router := mux.NewRouter()
+    router.HandleFunc("/", getRandomFortune).Methods("GET")
+    router.HandleFunc("/{genre}", getSpecificFortuneType).Methods("GET")
+    log.Fatal(http.ListenAndServe(":8000", router))
 }
