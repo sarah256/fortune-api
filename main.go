@@ -116,7 +116,7 @@ func getSpecificFortuneType(w http.ResponseWriter, r *http.Request) {
 	if params["genre"] == "favicon.ico" {
 		return
 	}
-	filePath := fmt.Sprintf("%s%s", "datfiles\\", params["genre"])
+	filePath := fmt.Sprintf("%s%s", "datfiles/", params["genre"])
 
 	file, err := os.Open(filePath)
 
