@@ -30,7 +30,7 @@ $ go run main.go
 The API is by default hosted at `localhost:8080`, but you can change this in the `main()` function in the `main.go` file.
 
 ## Endpoints
-No additional path is needed if you woud like a completely random fortune.
+No additional path is needed if you would like a completely random fortune.
 
 You can get a fortune from a specific genre at `localhost:8080/<genre>`, replacing 'genre' with the desired datfile name.
 For example, `localhost:8080/computers` could give you an output such as:

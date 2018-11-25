@@ -19,7 +19,9 @@ func getFortune(filename string, fortunes int) string {
 	// filename : the file the fortune is being selected from
 	// fortunes : the total number of fortunes in the file
 	// Returns : the fortune in the form of a formatted string
-
+	if filename == "datfile/favicon.ico" {
+		return ""
+	}
 	file, err := os.Open(filename)
 
 	if err != nil {
@@ -111,6 +113,9 @@ func getRandomFortune(w http.ResponseWriter, r *http.Request) {
 func getSpecificFortuneType(w http.ResponseWriter, r *http.Request) {
 	// Get a specific genre of fortune; must be a file within datfiles
 	params := mux.Vars(r)
+	if params["genre"] == "favicon.ico" {
+		return
+	}
 	filePath := fmt.Sprintf("%s%s", "datfiles/", params["genre"])
 
 	file, err := os.Open(filePath)
