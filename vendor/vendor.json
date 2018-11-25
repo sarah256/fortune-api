@@ -1,0 +1,16 @@
+{
+    "comment": "",
+    "package": [
+		{
+			"checksumSHA1": "STQSdSj2FcpCf0NLfdsKhNutQT0=",
+			"path": "github.com/gorilla/mux",
+			"revision": "e48e440e4c92e3251d812f8ce7858944dfa3331c",
+			"revisionTime": "2018-08-07T07:52:56Z"
+		}
+    ],
+    "rootPath": "github.com/sarah256/fortune-api",
+    "heroku": {
+        "install" : [ "./..." ],
+        "goVersion": "go1.7"
+    }
+}
