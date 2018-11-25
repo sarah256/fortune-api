@@ -11,6 +11,6 @@
     "rootPath": "github.com/sarah256/fortune-api",
     "heroku": {
         "install" : [ "./..." ],
-        "goVersion": "go1.7"
+        "goVersion": "go1.11.2"
     }
 }

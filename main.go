@@ -116,7 +116,7 @@ func getSpecificFortuneType(w http.ResponseWriter, r *http.Request) {
 	if params["genre"] == "favicon.ico" {
 		return
 	}
-	filePath := fmt.Sprintf("%s%s", "datfiles/", params["genre"])
+	filePath := fmt.Sprintf("%s%s", "datfiles\\", params["genre"])
 
 	file, err := os.Open(filePath)
 
@@ -146,5 +146,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", getRandomFortune).Methods("GET")
 	router.HandleFunc("/{genre}", getSpecificFortuneType).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := ":" + os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(port, router))
 }
