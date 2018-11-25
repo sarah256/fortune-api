@@ -146,5 +146,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", getRandomFortune).Methods("GET")
 	router.HandleFunc("/{genre}", getSpecificFortuneType).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := ":" + os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(port, router))
 }
