@@ -9,7 +9,7 @@
 A RESTful API for the classic fortune command-line utility (in the fortune-mod package). Every query will return a random fortune!
 These fortunes are originally from the [fortune-mod](https://github.com/shlomif/fortune-mod) repository, from the original command line utility.
 
-It is hosted at [fortuneapi.heroku.com](fortuneapi.heroku.com).
+It is hosted at [fortuneapi.heroku.com](https://fortuneapi.heroku.com).
 
 ## Adding Fortunes
 To add a new fortune, go to the `datfiles` directory, and choose the correspoding file to contribute to.  If none of the files fit, feel free to make your own!  As with the original, fortunes deemed to be not-so-wholesome should be confined to the `datfiles/off` directory.
@@ -29,7 +29,7 @@ In the repository folder, use the following to run the API server:
 $ go run main.go
 ```
 
-The API is hosted at [fortuneapi.heroku.com](fortuneapi.heroku.com), but you can change this in the `main()` function in the `main.go` file to run it locally.
+The API is hosted at [fortuneapi.heroku.com](https://fortuneapi.heroku.com), but you can change this in the `main()` function in the `main.go` file to run it locally.
 
 I recommend changing it as follows:
 
