@@ -29,7 +29,7 @@ In the repository folder, use the following to run the API server:
 $ go run main.go
 ```
 
-The API is hosted at [fortuneapi.heroku.com](https://fortuneapi.heroku.com), but you can change this in the `main()` function in the `main.go` file to run it locally.
+The API is hosted at [https://fortuneapi.herokuapp.com/](https://fortuneapi.herokuapp.com/), but you can change this in the `main()` function in the `main.go` file to run it locally.
 
 I recommend changing it as follows:
 
@@ -48,8 +48,8 @@ Now you can access the API at `localhost:8080`!
 ## Endpoints
 No additional path is needed if you would like a completely random fortune.
 
-You can get a fortune from a specific genre at `fortuneapi.heroku.com/<genre>`, replacing 'genre' with the desired datfile name.  The genre must be the exact name of one of the files in the `datfiles` directory.
-For example, `fortuneapi.heroku.com/computers` *could* give you an output such as:
+You can get a fortune from a specific genre at `https://fortuneapi.herokuapp.com/<genre>`, replacing 'genre' with the desired datfile name.  The genre must be the exact name of one of the files in the `datfiles` directory.
+For example, `https://fortuneapi.herokuapp.com/computers` *could* give you an output such as:
 ```
 "We are experiencing system trouble -- do not adjust your terminal.\n"
 ```
